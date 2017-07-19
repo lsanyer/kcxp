@@ -10,6 +10,7 @@ public class Transaction {
 	String exclpath = "Q:\\普通委托\\委托买卖业务.xls";
 	@Test//用例1正常委托买入业务流
 	public void testcase1() throws Exception {
+		Printname.printname("Transaction_testcase1");
 		//委托前查询可用资金
 		Map<String, String> paramMap_1 = ReadExc.Readcase(exclpath,"testcase1",0);
 		KCBPBusiness kcbpBusiness = KCBPBusiness.getInstance();
@@ -35,6 +36,7 @@ public class Transaction {
 	
 	@Test//用例2正常委托卖出业务流
 	public void testcase2() throws Exception {
+		Printname.printname("Transaction_testcase2");
 		//委托前查询可用股份
 		Map<String, String> paramMap_1 = ReadExc.Readcase(exclpath,"testcase1",2);
 		KCBPBusiness kcbpBusiness = KCBPBusiness.getInstance();
