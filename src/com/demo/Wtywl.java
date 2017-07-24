@@ -214,7 +214,6 @@ public class Wtywl {
 			AssertJUnit.fail("基金委托卖出业务流委托状态校验失败");
 		}			
 	}
-	
-	
+		
 	
 }
