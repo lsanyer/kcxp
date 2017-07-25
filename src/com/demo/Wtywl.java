@@ -124,6 +124,7 @@ public class Wtywl {
 		//委托卖出
 		Map<String, String> paramMap_2 = ReadExc.Readcase(exclpath,"testcase3",4);
 		kcbpBusiness.fundQueryBusiness(paramMap_2);
+		Thread.sleep(100);//执行速度太快还没来得及冻结可用数量，就已经查询了，所以设置等待时间0.1s
 		//委托后查询可用股份
 		Map<String, String> paramMap_3 = ReadExc.Readcase(exclpath,"testcase2",2);
 		kcbpBusiness.fundQueryBusiness(paramMap_3);
