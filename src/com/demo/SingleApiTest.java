@@ -5,12 +5,12 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import com.spasvo.kcbp.*;
 
-public class NewDemo {
+public class SingleApiTest {
 	KCBPBusiness kcbpBusiness = KCBPBusiness.getInstance();
 	String Excpath = "f:\\demo.xls";
 
   @Test//用例001资金查询校验数据
-  public void testcase001() throws Exception {
+  public void 资金查询单接口测试() throws Exception {
 	  Printname.printname("NewDemo_testcase001");
 	  	Map<String, String> paramMap = ReadExc.Readcase(Excpath,"testcase1",1);
 		kcbpBusiness.fundQueryBusiness(paramMap);
@@ -25,7 +25,7 @@ public class NewDemo {
   }
   
   @Test//用例002股份查询校验数据
-  public void testcase002() throws Exception {
+  public void 股份查询单接口测试() throws Exception {
 	  Printname.printname("NewDemo_testcase002");
 	  	Map<String, String> paramMap = ReadExc.Readcase(Excpath,"testcase1",2);
 	  	String stkcode = KCBPBusiness.getStr(paramMap,"stkcode");
@@ -42,17 +42,17 @@ public class NewDemo {
   
 	
 	 @Test//用例003股票正常委托买入
-	  public void testcase003() throws Exception {
-		  	Printname.printname("NewDemo_testcase003");
-		  	Map<String, String> paramMap = ReadExc.Readcase(Excpath,"testcase1",0);
-			kcbpBusiness.fundQueryBusiness(paramMap);
-			if(KCBPBusiness.Checkpoint(paramMap)){
+	  public void 股票正常委托买入() throws Exception {
+		  	Printname.printname("NewDemo_testcase003");//打印用例名
+		  	Map<String, String> paramMap = ReadExc.Readcase(Excpath,"testcase1",0);//读取Excel数据
+			kcbpBusiness.fundQueryBusiness(paramMap);//给kcxp发包、收包
+			if(KCBPBusiness.Checkpoint(paramMap)){//校验结果
 				AssertJUnit.fail("正常委托买入用例执行失败");
 			}
 	  }
 
 	  @Test//用例004股票零股买入
-	  public void testcase004() throws Exception {
+	  public void 股票零股买入() throws Exception {
 		  	Printname.printname("NewDemo_testcase004");
 		  	Map<String, String> paramMap = ReadExc.Readcase(Excpath,"testcase2",0);
 			kcbpBusiness.fundQueryBusiness(paramMap);

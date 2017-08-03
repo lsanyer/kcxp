@@ -23,6 +23,7 @@ public class ReadExc {
     	paramMap.put("receiveQName","ans_jd1");
     	paramMap.put("usename","KCXP00");
     	paramMap.put("passwd","888888");
+    	paramMap.put("tc_allowerror","1");
 		File file = new File(exclpath);  
 		InputStream in = new FileInputStream(file);  
 		Workbook workbook = Workbook.getWorkbook(in);
@@ -85,51 +86,25 @@ public class ReadExc {
 				paramMap.put("price",price);
 			}
 		}
+		String acctype = paramMap.get("acctype").toString();
+		if(acctype.length()>0){
+			String sql = "select * from customer_info where remark = \'"+acctype+"\'";
+			String[] str = GetCustInfo.cust_info(sql);
+			paramMap.put("custid",str[1]);
+			paramMap.put("orgid",str[5]);
+			paramMap.put("custorgid",str[5]);
+			if(paramMap.containsKey("fundid")){
+				paramMap.put("fundid",str[2]);
+			}
+			if(paramMap.containsKey("secuid")){
+				paramMap.put("secuid",str[3]);
+			}
+		}
 		return paramMap;
 	}
-/*		public static void main(String[] args) throws BiffException, IOException{
-		Map paramMap =  ReadExc.Readcase("d:\\sanyer.xls","testcase1",0);
-		System.out.println(paramMap.get("custid").toString());
+/*	public static void main(String[] args) throws BiffException, IOException, SQLException{
+		Map<String, String> paramMap = ReadExc.Readcase("f:\\demo.xls","testcase1",0);
+		System.out.println(paramMap.toString());
 	}
-	public static void main(String[] args) throws BiffException, IOException{
-	File file = new File("d:\\sanyer.xls");  
-	InputStream in = new FileInputStream(file);  
-	Workbook workbook = Workbook.getWorkbook(in);  
-	ReadWrite("d:\\sanyer.xls","testcase1",0);
-	//获取第一张Sheet表  
-	Sheet sheet = workbook.getSheet(0);  
-	//我们既可能通过Sheet的名称来访问它，也可以通过下标来访问它。如果通过下标来访问的话，要注意的一点是下标从0开始，就像数组一样。  
-	//获取第一列，第一行的值   
-	Cell c00 = sheet.getCell(0, 0);   
-	String strc00 = c00.getContents();  
-	//获取第一列，第二行的值   
-	Cell c10 = sheet.getCell(0, 1);   
-	String strc10 = c10.getContents();
-	System.out.println(strc00);
-	System.out.println(strc10);
-
-/*	String[][] str = new String[100][100];
-	int i=0,j=0;
-	Cell c = null;
-	for(;;){
-		for(i = 0;i < 2;i++){
-			c = sheet.getCell(i, j); 
-			str[j][i] = c.getContents();
-			if(c.getContents().equals("END")){
-				break;
-			}
-		}
-		if(c.getContents().equals("END")){
-			break;
-		}
-		j++;
-	}
-	for(int k = 0;k<str.length;k++){
-		for(int n = 0;n < 2;n++){
-			System.out.println(str[k][n]);
-			}
-		}
-
-	}
-*/	
+*/
 }

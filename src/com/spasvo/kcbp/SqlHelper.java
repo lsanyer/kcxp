@@ -30,7 +30,7 @@ import java.sql.Statement;
         public static ResultSet  executeQuery(String SQL){    
         	try{       
                Connection conn=getCoonection();  
-               System.out.println("---------------连接数据库成功----------------");
+               //System.out.println("---------------连接数据库成功----------------");
                Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);  
                ResultSet rs = stmt.executeQuery(SQL);    
                return  rs;  
@@ -43,7 +43,7 @@ import java.sql.Statement;
         public static boolean  executeUpdate(String SQL){    
               try{  
             	  Connection conn=getCoonection();  
-            	  System.out.println("---------------连接数据库成功----------------");                
+            	  //System.out.println("---------------连接数据库成功----------------");                
             	  Statement stmt = conn.createStatement();  
             	  int result = stmt.executeUpdate(SQL);  
             	  if(result>0)  
@@ -56,9 +56,9 @@ import java.sql.Statement;
         }  
         public static String[][] getDatebases(String Sql) throws SQLException{
         	ResultSet rs=SqlHelper.executeQuery(Sql);
-        	int colnum = rs.getMetaData().getColumnCount();
+        	int colnum = rs.getMetaData().getColumnCount();//查询结果对应二维数组的列数
         	rs.last();
-        	int rows = rs.getRow();
+        	int rows = rs.getRow();//查询结果对应二维数组的行数
         	String[][] str = new String[rows][colnum];
         	rs.beforeFirst();
         	for (int i = 0; rs.next(); i++) {
