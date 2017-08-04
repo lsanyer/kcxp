@@ -6,6 +6,13 @@
 import java.sql.SQLException;
 import java.sql.Statement;  
       
+/**
+ * 
+ * @author 罗涛
+ * 
+ * 用于对集中交易的sqlserver库进行增删改查操作
+ *
+ */
     public class SqlHelper{    
     	//数据库类型
         private static String driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -54,6 +61,8 @@ import java.sql.Statement;
               }  
               return false;  
         }  
+        
+        //将查询结果转换成一个二位数组
         public static String[][] getDatebases(String Sql) throws SQLException{
         	ResultSet rs=SqlHelper.executeQuery(Sql);
         	int colnum = rs.getMetaData().getColumnCount();//查询结果对应二维数组的列数

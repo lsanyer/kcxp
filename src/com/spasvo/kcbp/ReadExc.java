@@ -11,6 +11,14 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
+/**
+ * 
+ * @author 罗涛
+ * 
+ * 从用例数据Excel中读取用例数据并存入一个Map变量中
+ *
+ */
+
 public class ReadExc {
 	public static Map<String, String> Readcase(String exclpath,String casename,int sheetnum) throws BiffException, IOException, SQLException{
 		Map<String, String> paramMap = new HashMap<String, String>();
@@ -86,6 +94,8 @@ public class ReadExc {
 				paramMap.put("price",price);
 			}
 		}
+		
+		//判断账户类型字段是否有值，如果有值则查询改值对应在mysql数据库中remark字段的账户数据
 		String acctype = paramMap.get("acctype").toString();
 		if(acctype.length()>0){
 			String sql = "select * from customer_info where remark = \'"+acctype+"\'";
